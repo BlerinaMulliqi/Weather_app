@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather App</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="weather-app">
+            <form class="search-form" id="search-form">
+                <div class="row">
+                    <div class="col-5">
+                        <input id="input-text" type="search" placeholder="Type a city.." autofocus="on"
+                            autocomplete="off" class="form-control" />
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" value="Search" class="form-control shadow-sm w-100" />
+                    </div>
+                    <div class="col-2">
+                        <button class="form-control shadow-sm w-80" id="current-button">Current</button>
+                    </div>
+                </div>
+            </form>
+            <h1 id="city">
+                New York
+            </h1>
+            <ul>
+                <li id="date"> </li>
+            </ul>
+            <div class="row">
+                <div class="col-6">
+                    <div class="clearfix">
+                        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="Cloudy icon"
+                            class="weather-icon float-left" />
+                        <div class="float-left">
+                            <span class="temperature" id="temperature"></span><span class="units">
+                            °C
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <ul>
+                        <li>
+                        Humidity: <span id="humidity"> 77</span>%
+                        </li>
+                        <li>
+                        Wind: <span id="wind"> 8 </span>km/h
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row img-icons">
+                <div class="col-1">
+                    Monday <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" />
+                    36° 31°
+                </div>
+                <div class="col-1">
+                    Tuesday <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" />
+                    26° 31°
+                </div>
+                <div class="col-1">
+                    Wednesday <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" />
+                    26° 41°
+                </div>
+                <div class="col-1">
+                    Thursday <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" />
+                    56° 35°
+                </div>
+                <div class="col-1">
+                    Friday <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" />
+                    36° 21°
+                </div>
+                <div class="col-1">
+                    Saturday <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" />
+                    56° 31°
+                </div>
+                </ul>
+            </div>
+        </div>
+       <footer> <a href="https://github.com/BlerinaMulliqi/weather-app.git"> Open-source code by </a> Blerina Mulliqi </footer>
+        <script src="index.js"></script>
+</body>
+
+</html>
