@@ -15,6 +15,7 @@ li {
   max-width: 710px;
   margin-top: 100px;
   padding: 40px 65px 10px 10px;
+  background-color: rgb(255, 253, 250);
 }
 
 ul {
@@ -71,4 +72,10 @@ img {
 
 footer {
   text-align: center;
+}
+
+.weather-temperature .active {
+  cursor: default;
+  text-decoration: none;
+  color: black;
 }
