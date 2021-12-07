@@ -79,3 +79,8 @@ footer {
   text-decoration: none;
   color: black;
 }
+
+.weather-forecast {
+  text-emphasis: center;
+  margin-top: 10px;
+}
