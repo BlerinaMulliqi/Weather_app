@@ -3,6 +3,7 @@ function formatDate(date) {
   if (hours < 10) {
     hours = `0${hours}`;
   }
+
   let minutes = date.getMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`;
@@ -23,6 +24,32 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#weather-forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday",];
+  days.forEach(function (day) {
+    forecastHTML= forecastHTML + `
+                    <div class="col-2">
+                        <div class="weather-forecast-date">${day}</div>
+                        <img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="42" />
+                        <div class="weather-forecast-temperatures">
+                            <span class="weather-forecast-temperature-max"> 18° </span>
+                            <span class="weather-forecast-temperature-min"> 12° </span>
+                        </div>
+        </div>`;
+    
+    
+  })
+  forecastElement.innerHTML = forecastHTML;
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+
+}
+  
+  
+  
 function searchLocation(position) {
   let apiKey = "8eac7791833be5b7dfde42167dc980fd";
   let apiUrl =`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
@@ -98,3 +125,4 @@ celsiusitLink.addEventListener("click", showcelsiusTemperature);
 
 
 search("New York");
+displayForecast();
