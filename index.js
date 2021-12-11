@@ -24,30 +24,39 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function displayDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Mon", "Tue", "Wen", "Thur", "Fri", "Sat", "Sun"];
+
+ return days[day];
+  
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#weather-forecast");
-  let forecastHTML = `<div class="row">`;
-  let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday",];
-  days.forEach(function (day) {
-    forecastHTML= forecastHTML + `
+  let forecastHTML = `<div class="row">`
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML = forecastHTML + `
                     <div class="col-2">
-                        <div class="weather-forecast-date">${day}</div>
-                        <img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="42" />
+                        <div class="weather-forecast-date">${displayDay(forecastDay.dt)}</div>
+                        <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="" width="42" />
                         <div class="weather-forecast-temperatures">
-                            <span class="weather-forecast-temperature-max"> 18° </span>
-                            <span class="weather-forecast-temperature-min"> 12° </span>
+                            <span class="weather-forecast-temperature-max"> ${Math.round(forecastDay.temp.max)}° </span>
+                            <span class="weather-forecast-temperature-min"> ${Math.round(forecastDay.temp.min)}° </span>
                         </div>
-        </div>`;
+                        </div>`;
+
     
-    
+    }
   })
   forecastElement.innerHTML = forecastHTML;
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
-
 }
-  
+
   
   
 function searchLocation(position) {
@@ -63,6 +72,15 @@ function showCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "8eac7791833be5b7dfde42167dc980fd";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+
+}
+
 
 function weatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
@@ -72,6 +90,8 @@ function weatherCondition(response) {
   document.querySelector("#icon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 
   celsiusTemperature = response.data.main.temp;
+  
+  getForecast(response.data.coord);
 }
 
 function search(city) {
@@ -96,7 +116,6 @@ searchForm.addEventListener("submit", submitForm);
 
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", showCurrentLocation);
-
 
 
 function showFahrenheitTemperature(event) {
@@ -125,4 +144,3 @@ celsiusitLink.addEventListener("click", showcelsiusTemperature);
 
 
 search("New York");
-displayForecast();
